@@ -2,6 +2,10 @@
 
 Focused GitHub repository health checks, CI/test triage, and small automation fixes for builders who need a practical next step.
 
+## Free Mini Checklist
+
+Not ready for a paid kit or review yet? Start with the free [README Health Mini Checklist](README_HEALTH_MINI_CHECKLIST.md) to check setup, tests, CI, dependencies, contribution notes, and handoff clarity in about 10 minutes.
+
 ## Self-Serve Kit
 
 Want the checklist and report structure without hiring someone yet?
