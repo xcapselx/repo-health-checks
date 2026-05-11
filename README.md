@@ -2,6 +2,14 @@
 
 Focused GitHub repository health checks, CI/test triage, and small automation fixes for builders who need a practical next step.
 
+## Self-Serve Kit
+
+Want the checklist and report structure without hiring someone yet?
+
+[Buy the Repo Health Snapshot Kit - $29](https://designsy1.gumroad.com/l/toksiz)
+
+It is a downloadable set of worksheets for setup friction, test/CI triage, dependency and docs hygiene, intake questions, and a sample repo-health report.
+
 ## Services
 
 ### Repo Health Snapshot - $79
@@ -38,6 +46,8 @@ Timeline: 72 hours after requirements are confirmed.
 ## Request A Review
 
 Open a new issue with the repo link, failing command or workflow, expected result, preferred branch, and any constraints around secrets or private services.
+
+[Buy the self-serve kit](https://designsy1.gumroad.com/l/toksiz) or [request a done-for-you review](https://github.com/xcapselx/repo-health-checks/issues/new/choose).
 
 Opening an issue is an intake request, not a purchase. Work starts only after scope, timing, and payment terms are confirmed.
 
