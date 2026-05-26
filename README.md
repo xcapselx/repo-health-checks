@@ -6,6 +6,10 @@ Focused GitHub repository health checks, CI/test triage, and small automation fi
 
 Not ready for a paid kit or review yet? Start with the free [README Health Mini Checklist](README_HEALTH_MINI_CHECKLIST.md) to check setup, tests, CI, dependencies, contribution notes, and handoff clarity in about 10 minutes.
 
+## Sample Snapshot
+
+Want to see the shape of the outcome first? Read the synthetic [Sample Repo Health Snapshot](SAMPLE_REPO_HEALTH_SNAPSHOT.md) and compact [Sample Scorecard](SAMPLE_REPO_HEALTH_SCORECARD.md).
+
 ## Self-Serve Kit
 
 Want the checklist and report structure without hiring someone yet?
@@ -49,9 +53,9 @@ Timeline: 72 hours after requirements are confirmed.
 
 ## Request A Review
 
-Open a new issue with the repo link, failing command or workflow, expected result, preferred branch, and any constraints around secrets or private services.
+Open a new issue with the repo link, failing command or workflow, expected result, preferred branch, and any constraints around sensitive services.
 
-[Buy the self-serve kit](https://designsy1.gumroad.com/l/toksiz) or [request a done-for-you review](https://github.com/xcapselx/repo-health-checks/issues/new/choose).
+[Buy the self-serve kit](https://designsy1.gumroad.com/l/toksiz) or [request a done-for-you review](https://github.com/xcapselx/repo-health-checks/issues).
 
 Opening an issue is an intake request, not a purchase. Work starts only after scope, timing, and payment terms are confirmed.
 
@@ -59,4 +63,4 @@ Opening an issue is an intake request, not a purchase. Work starts only after sc
 
 This service is for focused repo cleanup and small automation fixes. Large refactors, production incident response, private data handling, and broad security audits need a separate scope.
 
-Do not post secrets, API keys, recovery codes, customer data, private infrastructure details, or production credentials in issues.
+Do not post sensitive values, recovery codes, customer data, private service details, or production access details in issues.
