@@ -1,0 +1,54 @@
+name: Checklist result
+description: Share a short result after using the free README Health Mini Checklist.
+title: "Checklist result: "
+labels:
+  - checklist-result
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is optional feedback for the free checklist.
+
+        Do not include secrets, credentials, private repo URLs, production access details, customer/user data, tokens/API keys, or private logs.
+  - type: input
+    id: repo
+    attributes:
+      label: Repository
+      description: Public repository URL only. Do not include private repo URLs.
+      placeholder: https://github.com/owner/repo
+    validations:
+      required: false
+  - type: dropdown
+    id: score_band
+    attributes:
+      label: Checklist score band
+      options:
+        - 0-4: basic recovery pass needed
+        - 5-8: usable with handoff friction
+        - 9-12: good shape for a lightweight pass
+        - Not scored yet
+    validations:
+      required: true
+  - type: textarea
+    id: most_useful
+    attributes:
+      label: What was most useful?
+      description: One or two bullets is enough.
+      placeholder: The setup/test questions made the next README edit obvious.
+    validations:
+      required: false
+  - type: textarea
+    id: unclear
+    attributes:
+      label: What was unclear?
+      description: Note any confusing wording, missing checklist item, or next-step gap.
+      placeholder: I was not sure how to score CI clarity.
+    validations:
+      required: false
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: I did not include secrets, credentials, private repo URLs, production access details, customer/user data, tokens/API keys, or private logs.
+          required: true

@@ -2,6 +2,19 @@
 
 Focused GitHub repository health checks, CI/test triage, and small automation fixes for builders who need a practical next step.
 
+## Start Here
+
+If you cloned this repo, start with [START_HERE.md](START_HERE.md).
+
+Shortest path:
+
+1. Use the free [README Health Mini Checklist](README_HEALTH_MINI_CHECKLIST.md).
+2. Compare your result with the [Sample Repo Health Snapshot](SAMPLE_REPO_HEALTH_SNAPSHOT.md) and [Sample Scorecard](SAMPLE_REPO_HEALTH_SCORECARD.md).
+3. If you want deeper worksheets and a report structure, use the self-serve [Repo Health Snapshot Kit - $29](https://designsy1.gumroad.com/l/toksiz).
+4. If you want scoped help on a specific repo, open a [done-for-you intake issue](https://github.com/xcapselx/repo-health-checks/issues/new?template=repo-health-check.yml).
+
+The free checklist and samples are enough for a quick self-review. The $29 kit is self-serve and does not include a custom repo review.
+
 ## Free Mini Checklist
 
 Not ready for a paid kit or review yet? Start with the free [README Health Mini Checklist](README_HEALTH_MINI_CHECKLIST.md) to check setup, tests, CI, dependencies, contribution notes, and handoff clarity in about 10 minutes.
@@ -55,9 +68,15 @@ Timeline: 72 hours after requirements are confirmed.
 
 Open a new issue with the repo link, failing command or workflow, expected result, preferred branch, and any constraints around sensitive services.
 
-[Buy the self-serve kit](https://designsy1.gumroad.com/l/toksiz) or [request a done-for-you review](https://github.com/xcapselx/repo-health-checks/issues).
+[Buy the self-serve kit](https://designsy1.gumroad.com/l/toksiz) or [request a done-for-you review](https://github.com/xcapselx/repo-health-checks/issues/new?template=repo-health-check.yml).
 
 Opening an issue is an intake request, not a purchase. Work starts only after scope, timing, and payment terms are confirmed.
+
+## Optional Checklist Feedback
+
+If you used the free checklist and want to share what helped or what was unclear, open a short [checklist result issue](https://github.com/xcapselx/repo-health-checks/issues/new?template=checklist-result.yml).
+
+This is optional feedback, not a support request and not a purchase path.
 
 ## Scope Guard
 
