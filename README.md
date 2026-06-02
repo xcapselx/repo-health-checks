@@ -4,7 +4,11 @@ Focused GitHub repository health checks, CI/test triage, and small automation fi
 
 ## Start Here
 
-If you cloned this repo, start with [START_HERE.md](START_HERE.md).
+Cloned this repo? In the first 30 seconds, open the free [README Health Mini Checklist](README_HEALTH_MINI_CHECKLIST.md), pick one repo, and score its README in 10 minutes.
+
+After you finish, you can optionally share a [checklist result issue](https://github.com/xcapselx/repo-health-checks/issues/new?template=checklist-result.yml). Do not include secrets, credentials, private repo URLs, production access details, customer/user data, tokens/API keys, or private logs.
+
+For the full path, use [START_HERE.md](START_HERE.md).
 
 Shortest path:
 
