@@ -1,10 +1,10 @@
 # Repo Health Checks
 
-Focused GitHub repository health checks, CI/test triage, and small automation fixes for builders who need a practical next step.
+Focused GitHub repository health checks, CI/test triage, and small automation fixes for builders who need to turn a messy, fast-built, or AI-built repo into a handoff-ready next-action list.
 
 ## Start Here
 
-Cloned this repo? In the first 30 seconds, open the free [README Health Mini Checklist](README_HEALTH_MINI_CHECKLIST.md), pick one repo, and score its README in 10 minutes.
+Cloned this repo? In the first 30 seconds, open the free [README Health Mini Checklist](README_HEALTH_MINI_CHECKLIST.md), pick one repo, and score whether it is handoff-ready: easy to understand, run, test, and turn into a next-action list.
 
 After you finish, you can optionally share a [checklist result issue](https://github.com/xcapselx/repo-health-checks/issues/new?template=checklist-result.yml). Do not include secrets, credentials, private repo URLs, production access details, customer/user data, tokens/API keys, or private logs.
 
@@ -14,7 +14,7 @@ Shortest path:
 
 1. Use the free [README Health Mini Checklist](README_HEALTH_MINI_CHECKLIST.md).
 2. Compare your result with the [Sample Repo Health Snapshot](SAMPLE_REPO_HEALTH_SNAPSHOT.md) and [Sample Scorecard](SAMPLE_REPO_HEALTH_SCORECARD.md).
-3. If you want deeper worksheets and a report structure, use the self-serve [Repo Health Snapshot Kit - $29](https://designsy1.gumroad.com/l/toksiz).
+3. If you want the fuller self-serve workflow for turning scores into a repo-health report and prioritized next-action list, use the [Repo Health Snapshot Kit - $29](https://designsy1.gumroad.com/l/toksiz).
 4. If you want scoped help on a specific repo, open a [done-for-you intake issue](https://github.com/xcapselx/repo-health-checks/issues/new?template=repo-health-check.yml).
 
 The free checklist and samples are enough for a quick self-review. The $29 kit is self-serve and does not include a custom repo review.
@@ -29,11 +29,11 @@ Want to see the shape of the outcome first? Read the synthetic [Sample Repo Heal
 
 ## Self-Serve Kit
 
-Want the checklist and report structure without hiring someone yet?
+Want to turn checklist scores into a fuller self-serve report and next-action list without hiring someone yet?
 
 [Buy the Repo Health Snapshot Kit - $29](https://designsy1.gumroad.com/l/toksiz)
 
-It is a downloadable set of worksheets for setup friction, test/CI triage, dependency and docs hygiene, intake questions, and a sample repo-health report.
+It is a downloadable workflow for setup friction, test/CI triage, dependency and docs hygiene, safe intake, and a handoff-ready repo-health report.
 
 ## Services
 
