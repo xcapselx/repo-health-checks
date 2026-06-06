@@ -19,6 +19,16 @@ Shortest path:
 
 The free checklist and samples are enough for a quick self-review. The $29 kit is self-serve and does not include a custom repo review.
 
+## First 3 Kit Buyer Mini-Readouts
+
+Launch bonus for the first 3 $29 kit buyers: request one public-repo mini-readout after purchase.
+
+You get a 10-minute public-repo pass, one short note, and the top 3 next actions for handoff readiness.
+
+Scope: public repos only. No secrets, private access, PR creation, security audit, production incident response, large refactor plan, ongoing consulting, or promised fixes.
+
+Use the Gumroad purchase/support contact path with a public GitHub repo URL only.
+
 ## Free Mini Checklist
 
 Not ready for a paid kit or review yet? Start with the free [README Health Mini Checklist](README_HEALTH_MINI_CHECKLIST.md) to check setup, tests, CI, dependencies, contribution notes, and handoff clarity in about 10 minutes.
