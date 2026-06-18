@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repo Health Checks — GitHub Action & Service</title>
+<meta name="description" content="Non-invasive GitHub repository health checks. Scan README, LICENSE, SECURITY.md, dependencies, and file tree hygiene. GitHub Action, self-serve kit, and done-for-you service.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0d1117;color:#e6edf3;line-height:1.6}
+.hero{text-align:center;padding:80px 20px 60px;background:linear-gradient(180deg,#161b22 0%,#0d1117 100%)}
+.hero h1{font-size:2.5em;margin-bottom:16px;color:#58a6ff}
+.hero p{font-size:1.2em;color:#8b949e;max-width:600px;margin:0 auto 32px}
+.hero .cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-block;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:#238636;color:#fff}
+.btn-secondary{background:#21262d;color:#58a6ff;border:1px solid #30363d}
+.btn-tertiary{background:#1f6feb;color:#fff}
+.features{max-width:900px;margin:0 auto;padding:60px 20px}
+.features h2{text-align:center;font-size:1.8em;margin-bottom:40px;color:#58a6ff}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
+.feature{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:24px}
+.feature h3{color:#58a6ff;margin-bottom:8px;font-size:1.1em}
+.feature p{color:#8b949e;font-size:.95em}
+.products{max-width:900px;margin:0 auto;padding:40px 20px 80px}
+.products h2{text-align:center;font-size:1.8em;margin-bottom:40px;color:#58a6ff}
+.product{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:32px;margin-bottom:24px}
+.product h3{font-size:1.3em;margin-bottom:8px}
+.product .price{font-size:1.5em;color:#3fb950;font-weight:700;margin-bottom:16px}
+.product ul{list-style:none;margin:16px 0}
+.product li{padding:6px 0;color:#8b949e}
+.product li:before{content:"✓ ";color:#3fb950}
+.product .btn{margin-top:16px}
+.action-section{max-width:900px;margin:0 auto;padding:40px 20px;text-align:center}
+.action-section h2{font-size:1.8em;margin-bottom:24px;color:#58a6ff}
+.code-block{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:20px;text-align:left;max-width:600px;margin:0 auto;overflow-x:auto}
+.code-block code{color:#e6edf3;font-family:'SF Mono',Consolas,monospace;font-size:.9em;white-space:pre}
+footer{text-align:center;padding:40px 20px;color:#6e7681;border-top:1px solid #21262d}
+footer a{color:#58a6ff;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="hero">
+<h1>Repo Health Checks</h1>
+<p>Non-invasive GitHub repository health checks. Scan README, LICENSE, SECURITY.md, dependencies, and file tree hygiene. No network calls, no data uploads.</p>
+<div class="cta">
+<a class="btn btn-primary" href="https://github.com/xcapselx/repo-health-checks">View on GitHub</a>
+<a class="btn btn-tertiary" href="https://designsy1.gumroad.com/l/ftgbj">Get the $79 Service</a>
+<a class="btn btn-secondary" href="https://designsy1.gumroad.com/l/toksiz">Get the $29 Kit</a>
+</div>
+</div>
+<div class="features">
+<h2>What It Checks</h2>
+<div class="features-grid">
+<div class="feature"><h3>README</h3><p>Verifies a README file exists so new developers can understand the project.</p></div>
+<div class="feature"><h3>LICENSE</h3><p>Checks for a LICENSE file so ownership and usage terms are clear.</p></div>
+<div class="feature"><h3>SECURITY.md</h3><p>Looks for a security policy so vulnerability reports have a clear path.</p></div>
+<div class="feature"><h3>Dependency Lockfiles</h3><p>Detects Node.js, Python, Rust, Go, Ruby, PHP, and .NET dependencies and checks for lockfiles.</p></div>
+<div class="feature"><h3>File Tree Hygiene</h3><p>Scans for excessive depth, clutter files, and sensitive-looking filenames.</p></div>
+<div class="feature"><h3>Handoff Score</h3><p>Produces a 0-10 score and band rating for handoff readiness.</p></div>
+</div>
+</div>
+<div class="action-section">
+<h2>Use as a GitHub Action</h2>
+<div class="code-block"><code>- uses: xcapselx/repo-health-checks@v1
+  with:
+    path: '.'
+    fail-on-low-score: 'false'
+    output-format: 'markdown'</code></div>
+<p style="margin-top:16px;color:#8b949e">Runs on every push, PR, or weekly schedule. Uploads a health report artifact.</p>
+</div>
+<div class="products">
+<h2>Products</h2>
+<div class="product">
+<h3>Free README Health Mini Checklist</h3>
+<div class="price">Free</div>
+<p>A 10-minute self-review checklist for setup, tests, CI, dependencies, contribution notes, and handoff clarity.</p>
+<a class="btn btn-secondary" href="https://github.com/xcapselx/repo-health-checks/blob/main/README_HEALTH_MINI_CHECKLIST.md">Get the Free Checklist</a>
+</div>
+<div class="product">
+<h3>Repo Health Snapshot Kit</h3>
+<div class="price">$29</div>
+<p>A downloadable self-serve workflow for turning checklist scores into a fuller repo-health report and prioritized next-action list.</p>
+<ul>
+<li>Setup friction triage</li>
+<li>Test and CI triage</li>
+<li>Dependency and docs hygiene</li>
+<li>Safe intake questions</li>
+<li>Handoff-ready report template</li>
+</ul>
+<a class="btn btn-tertiary" href="https://designsy1.gumroad.com/l/toksiz">Buy the $29 Kit</a>
+</div>
+<div class="product">
+<h3>Repo Handoff Readiness Snapshot</h3>
+<div class="price">$79</div>
+<p>A focused done-for-you repo review. I review one public-safe repository and deliver a Markdown snapshot with a handoff-readiness score, top friction points, and a prioritized next-action list.</p>
+<ul>
+<li>Review one public-safe repository</li>
+<li>Check README, setup, test, CI, dependencies, docs, and handoff friction</li>
+<li>One Markdown snapshot with scorecard and next-action list</li>
+<li>24-hour delivery after payment</li>
+</ul>
+<a class="btn btn-primary" href="https://designsy1.gumroad.com/l/ftgbj">Buy the $79 Service</a>
+</div>
+</div>
+<footer>
+<p>Repo Health Checks by <a href="https://github.com/xcapselx">xcapselx</a></p>
+<p><a href="https://github.com/xcapselx/repo-health-checks">GitHub</a> · <a href="https://designsy1.gumroad.com/l/toksiz">$29 Kit</a> · <a href="https://designsy1.gumroad.com/l/ftgbj">$79 Service</a></p>
+</footer>
+</body>
+</html>
