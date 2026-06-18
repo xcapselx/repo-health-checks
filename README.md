@@ -7,14 +7,14 @@ Focused GitHub repository health checks, CI/test triage, and small automation fi
 Use this repo as a GitHub Action in your CI to automatically check your repo health on every push and PR:
 
 ```yaml
-- uses: xcapselx/repo-health-checks@main
+- uses: xcapselx/repo-health-checks@v2
   with:
     path: '.'
     fail-on-low-score: 'false'
     output-format: 'markdown'
 ```
 
-The action runs a non-invasive scan (no network calls, no data uploads) and produces a handoff-readiness scorecard covering README, LICENSE, SECURITY.md, dependency lockfiles, and file tree hygiene. See the [example workflow](.github/workflows/repo-health-check.yml).
+The action runs a non-invasive scan (no network calls, no data uploads) and produces a handoff-readiness scorecard with 9 checks covering README, LICENSE, SECURITY.md, dependency lockfiles, file tree hygiene, CI workflows, test structure, .gitignore, and community files. See the [example workflow](.github/workflows/repo-health-check.yml).
 
 ## Start Here
 
