@@ -47,13 +47,19 @@ It is a downloadable workflow for setup friction, test/CI triage, dependency and
 
 ## Services
 
-### Repo Health Snapshot - $79
+### Repo Handoff Readiness Snapshot - $79
 
-- Reproduce one failing command or CI issue.
-- Review package scripts, workflow config, and recent failure signals.
-- Deliver a short findings report with the most likely fix path.
+A focused repo review that turns setup, test, CI, docs, and handoff friction into a short scorecard and prioritized next-action list.
 
-Timeline: 24 hours after repo and command access.
+**[Buy now on Gumroad ->](https://designsy1.gumroad.com/l/ftgbj)**
+
+What is included:
+- Review one public-safe repository or sanitized repo context.
+- Check README clarity, setup path, test command, CI signal, package scripts, dependency hygiene, contribution notes, and handoff friction.
+- Deliver one Markdown snapshot with a handoff-readiness score, top friction points, prioritized next-action list, scope notes, and public-safety reminders.
+- Target delivery: 24 hours after payment and usable public-safe context.
+
+Timeline: 24 hours after payment and usable public-safe context.
 
 ### CI/Test Fix Sprint - $149
 
