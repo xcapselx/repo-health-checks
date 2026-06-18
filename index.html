@@ -3,110 +3,240 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Repo Health Checks — GitHub Action & Service</title>
-<meta name="description" content="Non-invasive GitHub repository health checks. Scan README, LICENSE, SECURITY.md, dependencies, and file tree hygiene. GitHub Action, self-serve kit, and done-for-you service.">
+<title>Repo Health Check — Free Online Scanner for GitHub Repos</title>
+<meta name="description" content="Free online repo health checker. Scan any public GitHub repo for README, LICENSE, SECURITY.md, CI, tests, dependencies, and file tree hygiene. Get a handoff-readiness score in seconds.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0d1117;color:#e6edf3;line-height:1.6}
-.hero{text-align:center;padding:80px 20px 60px;background:linear-gradient(180deg,#161b22 0%,#0d1117 100%)}
-.hero h1{font-size:2.5em;margin-bottom:16px;color:#58a6ff}
-.hero p{font-size:1.2em;color:#8b949e;max-width:600px;margin:0 auto 32px}
-.hero .cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.btn{display:inline-block;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;transition:transform .15s}
-.btn:hover{transform:translateY(-2px)}
+.hero{text-align:center;padding:60px 20px 40px;background:linear-gradient(180deg,#161b22 0%,#0d1117 100%)}
+.hero h1{font-size:2.5em;margin-bottom:12px;color:#58a6ff}
+.hero p{font-size:1.1em;color:#8b949e;max-width:600px;margin:0 auto 24px}
+.checker{max-width:700px;margin:0 auto;padding:20px}
+.checker-input{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.checker-input input{flex:1;min-width:250px;padding:12px 16px;background:#161b22;border:1px solid #30363d;border-radius:8px;color:#e6edf3;font-size:1em}
+.checker-input input::placeholder{color:#6e7681}
+.checker-input input:focus{outline:none;border-color:#58a6ff}
+.btn{display:inline-block;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;transition:transform .15s;cursor:pointer;border:none;font-size:1em}
+.btn:hover{transform:translateY(-1px)}
 .btn-primary{background:#238636;color:#fff}
 .btn-secondary{background:#21262d;color:#58a6ff;border:1px solid #30363d}
 .btn-tertiary{background:#1f6feb;color:#fff}
-.features{max-width:900px;margin:0 auto;padding:60px 20px}
-.features h2{text-align:center;font-size:1.8em;margin-bottom:40px;color:#58a6ff}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
-.feature{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:24px}
-.feature h3{color:#58a6ff;margin-bottom:8px;font-size:1.1em}
-.feature p{color:#8b949e;font-size:.95em}
-.products{max-width:900px;margin:0 auto;padding:40px 20px 80px}
-.products h2{text-align:center;font-size:1.8em;margin-bottom:40px;color:#58a6ff}
-.product{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:32px;margin-bottom:24px}
-.product h3{font-size:1.3em;margin-bottom:8px}
-.product .price{font-size:1.5em;color:#3fb950;font-weight:700;margin-bottom:16px}
-.product ul{list-style:none;margin:16px 0}
-.product li{padding:6px 0;color:#8b949e}
-.product li:before{content:"✓ ";color:#3fb950}
-.product .btn{margin-top:16px}
-.action-section{max-width:900px;margin:0 auto;padding:40px 20px;text-align:center}
-.action-section h2{font-size:1.8em;margin-bottom:24px;color:#58a6ff}
-.code-block{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:20px;text-align:left;max-width:600px;margin:0 auto;overflow-x:auto}
-.code-block code{color:#e6edf3;font-family:'SF Mono',Consolas,monospace;font-size:.9em;white-space:pre}
-footer{text-align:center;padding:40px 20px;color:#6e7681;border-top:1px solid #21262d}
+.btn:disabled{opacity:.5;cursor:wait;transform:none}
+#status{text-align:center;padding:16px;color:#8b949e;font-size:.95em}
+#status.error{color:#f85149}
+#status.success{color:#3fb950}
+#results{max-width:700px;margin:20px auto;padding:0 20px;display:none}
+.score-card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:24px;margin-bottom:16px}
+.score-card h2{font-size:1.4em;margin-bottom:8px;color:#58a6ff}
+.score-number{font-size:3em;font-weight:800;margin:12px 0}
+.score-band{font-size:1.1em;margin-bottom:16px}
+.score-good{color:#3fb950}
+.score-ok{color:#d29922}
+.score-bad{color:#f85149}
+.checks-table{width:100%;border-collapse:collapse;margin:16px 0}
+.checks-table th{text-align:left;padding:8px 12px;background:#21262d;color:#94a3b8;font-size:.85em;text-transform:uppercase;letter-spacing:.5px}
+.checks-table td{padding:10px 12px;border-bottom:1px solid #21262d}
+.check-status-ok{color:#3fb950;font-weight:600}
+.check-status-partial{color:#d29922;font-weight:600}
+.check-status-missing{color:#f85149;font-weight:600}
+.upsell{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:24px;margin:16px 0}
+.upsell h3{font-size:1.2em;margin-bottom:12px;color:#58a6ff}
+.upsell-product{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #21262d}
+.upsell-product:last-child{border-bottom:none}
+.upsell-product-info{flex:1}
+.upsell-product-name{font-weight:600;color:#e6edf3}
+.upsell-product-desc{font-size:.9em;color:#8b949e}
+.upsell-product-price{font-weight:700;color:#3fb950;margin-right:12px}
+.features{max-width:900px;margin:0 auto;padding:40px 20px}
+.features h2{text-align:center;font-size:1.6em;margin-bottom:32px;color:#58a6ff}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.feature{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:20px}
+.feature h3{color:#58a6ff;margin-bottom:6px;font-size:1em}
+.feature p{color:#8b949e;font-size:.9em}
+.action-section{max-width:900px;margin:0 auto;padding:20px;text-align:center}
+.code-block{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;text-align:left;max-width:500px;margin:0 auto;overflow-x:auto}
+.code-block code{color:#e6edf3;font-family:'SF Mono',Consolas,monospace;font-size:.85em;white-space:pre}
+footer{text-align:center;padding:32px 20px;color:#6e7681;border-top:1px solid #21262d}
 footer a{color:#58a6ff;text-decoration:none}
+.example-repos{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.example-repo{padding:4px 12px;background:#21262d;border:1px solid #30363d;border-radius:20px;font-size:.85em;cursor:pointer;color:#58a6ff;transition:background .15s}
+.example-repo:hover{background:#30363d}
 </style>
 </head>
 <body>
 <div class="hero">
-<h1>Repo Health Checks</h1>
-<p>Non-invasive GitHub repository health checks. Scan README, LICENSE, SECURITY.md, dependencies, and file tree hygiene. No network calls, no data uploads.</p>
-<div class="cta">
-<a class="btn btn-primary" href="https://github.com/xcapselx/repo-health-checks">View on GitHub</a>
-<a class="btn btn-tertiary" href="https://designsy1.gumroad.com/l/ftgbj">Get the $79 Service</a>
-<a class="btn btn-secondary" href="https://designsy1.gumroad.com/l/toksiz">Get the $29 Kit</a>
+<h1>Repo Health Check</h1>
+<p>Enter any public GitHub repo URL to get an instant handoff-readiness score. No login required. No data stored.</p>
+<div class="checker">
+<div class="checker-input">
+<input type="text" id="repo-url" placeholder="https://github.com/owner/repo" onkeydown="if(event.key==='Enter')scanRepo()">
+<button class="btn btn-primary" id="scan-btn" onclick="scanRepo()">Scan Repo</button>
+</div>
+<div class="example-repos">
+<span class="example-repo" onclick="setExample('facebook/react')">facebook/react</span>
+<span class="example-repo" onclick="setExample('microsoft/vscode')">microsoft/vscode</span>
+<span class="example-repo" onclick="setExample('torvalds/linux')">torvalds/linux</span>
+<span class="example-repo" onclick="setExample('xcapselx/repo-health-checks')">xcapselx/repo-health-checks</span>
 </div>
 </div>
+</div>
+<div id="status"></div>
+<div id="results"></div>
 <div class="features">
 <h2>What It Checks</h2>
 <div class="features-grid">
-<div class="feature"><h3>README</h3><p>Verifies a README file exists so new developers can understand the project.</p></div>
-<div class="feature"><h3>LICENSE</h3><p>Checks for a LICENSE file so ownership and usage terms are clear.</p></div>
-<div class="feature"><h3>SECURITY.md</h3><p>Looks for a security policy so vulnerability reports have a clear path.</p></div>
-<div class="feature"><h3>Dependency Lockfiles</h3><p>Detects Node.js, Python, Rust, Go, Ruby, PHP, and .NET dependencies and checks for lockfiles.</p></div>
-<div class="feature"><h3>File Tree Hygiene</h3><p>Scans for excessive depth, clutter files, and sensitive-looking filenames.</p></div>
-<div class="feature"><h3>Handoff Score</h3><p>Produces a 0-10 score and band rating for handoff readiness.</p></div>
+<div class="feature"><h3>README</h3><p>Verifies a README exists so new devs understand the project.</p></div>
+<div class="feature"><h3>LICENSE</h3><p>Checks for a LICENSE file so ownership and usage are clear.</p></div>
+<div class="feature"><h3>SECURITY.md</h3><p>Looks for a security policy for vulnerability reports.</p></div>
+<div class="feature"><h3>CI Workflows</h3><p>Checks for GitHub Actions or other CI configuration.</p></div>
+<div class="feature"><h3>Test Structure</h3><p>Looks for test directories and test file patterns.</p></div>
+<div class="feature"><h3>Dependencies</h3><p>Detects dependency manifests and lockfiles.</p></div>
+<div class="feature"><h3>.gitignore</h3><p>Checks .gitignore covers common build artifacts.</p></div>
+<div class="feature"><h3>Community</h3><p>Checks for CONTRIBUTING, CODE_OF_CONDUCT, templates.</p></div>
+<div class="feature"><h3>File Tree</h3><p>Scans for depth, clutter, and sensitive filenames.</p></div>
 </div>
 </div>
 <div class="action-section">
 <h2>Use as a GitHub Action</h2>
-<div class="code-block"><code>- uses: xcapselx/repo-health-checks@v1
+<div class="code-block"><code>- uses: xcapselx/repo-health-checks@v2
   with:
     path: '.'
-    fail-on-low-score: 'false'
-    output-format: 'markdown'</code></div>
-<p style="margin-top:16px;color:#8b949e">Runs on every push, PR, or weekly schedule. Uploads a health report artifact.</p>
-</div>
-<div class="products">
-<h2>Products</h2>
-<div class="product">
-<h3>Free README Health Mini Checklist</h3>
-<div class="price">Free</div>
-<p>A 10-minute self-review checklist for setup, tests, CI, dependencies, contribution notes, and handoff clarity.</p>
-<a class="btn btn-secondary" href="https://github.com/xcapselx/repo-health-checks/blob/main/README_HEALTH_MINI_CHECKLIST.md">Get the Free Checklist</a>
-</div>
-<div class="product">
-<h3>Repo Health Snapshot Kit</h3>
-<div class="price">$29</div>
-<p>A downloadable self-serve workflow for turning checklist scores into a fuller repo-health report and prioritized next-action list.</p>
-<ul>
-<li>Setup friction triage</li>
-<li>Test and CI triage</li>
-<li>Dependency and docs hygiene</li>
-<li>Safe intake questions</li>
-<li>Handoff-ready report template</li>
-</ul>
-<a class="btn btn-tertiary" href="https://designsy1.gumroad.com/l/toksiz">Buy the $29 Kit</a>
-</div>
-<div class="product">
-<h3>Repo Handoff Readiness Snapshot</h3>
-<div class="price">$79</div>
-<p>A focused done-for-you repo review. I review one public-safe repository and deliver a Markdown snapshot with a handoff-readiness score, top friction points, and a prioritized next-action list.</p>
-<ul>
-<li>Review one public-safe repository</li>
-<li>Check README, setup, test, CI, dependencies, docs, and handoff friction</li>
-<li>One Markdown snapshot with scorecard and next-action list</li>
-<li>24-hour delivery after payment</li>
-</ul>
-<a class="btn btn-primary" href="https://designsy1.gumroad.com/l/ftgbj">Buy the $79 Service</a>
-</div>
+    fail-on-low-score: 'false'</code></div>
 </div>
 <footer>
 <p>Repo Health Checks by <a href="https://github.com/xcapselx">xcapselx</a></p>
 <p><a href="https://github.com/xcapselx/repo-health-checks">GitHub</a> · <a href="https://designsy1.gumroad.com/l/toksiz">$29 Kit</a> · <a href="https://designsy1.gumroad.com/l/ftgbj">$79 Service</a></p>
 </footer>
+<script>
+function setExample(repo){
+document.getElementById('repo-url').value='https://github.com/'+repo;
+scanRepo();
+}
+function parseRepoUrl(url){
+url=url.trim();
+const m=url.match(/github\.com\/([^\/\s]+)\/([^\/\s]+)/);
+if(m)return{owner:m[1],repo:m[2].replace(/\.git$/,'')};
+const parts=url.split('/');
+if(parts.length>=2)return{owner:parts[0],repo:parts[1]};
+return null;
+}
+async function githubGet(path){
+const r=await fetch('https://api.github.com'+path,{headers:{'Accept':'application/vnd.github+json','User-Agent':'repo-health-checker'}});
+if(r.status===404)return null;
+if(r.status===403)throw new Error('GitHub API rate limit reached. Try again in a few minutes.');
+if(!r.ok)throw new Error('GitHub API error: '+r.status);
+return r.json();
+}
+async function githubExists(path){
+const r=await fetch('https://api.github.com'+path,{headers:{'Accept':'application/vnd.github+json','User-Agent':'repo-health-checker'}});
+return r.status!==404;
+}
+async function scanRepo(){
+const input=document.getElementById('repo-url').value;
+const btn=document.getElementById('scan-btn');
+const status=document.getElementById('status');
+const results=document.getElementById('results');
+if(!input){status.className='error';status.textContent='Enter a GitHub repo URL';return;}
+const parsed=parseRepoUrl(input);
+if(!parsed){status.className='error';status.textContent='Could not parse repo URL. Use format: owner/repo or https://github.com/owner/repo';return;}
+btn.disabled=true;
+status.className='';
+status.textContent='Scanning '+parsed.owner+'/'+parsed.repo+'...';
+results.style.display='none';
+try{
+const repo=await githubGet('/repos/'+parsed.owner+'/'+parsed.repo);
+if(!repo){status.className='error';status.textContent='Repository not found: '+parsed.owner+'/'+parsed.repo;btn.disabled=false;return;}
+const checks=[];
+const fileTree=await githubGet('/repos/'+parsed.owner+'/'+parsed.repo+'/contents/');
+const fileNames=fileTree?fileTree.map(f=>f.name.toLowerCase()):[];
+const hasDir=(name)=>fileTree?fileTree.some(f=>f.name.toLowerCase()===name&&f.type==='dir'):false;
+const hasFile=(name)=>fileNames.includes(name.toLowerCase());
+checks.push(await checkFile('README',fileNames,['readme.md','readme.rst','readme.txt','readme'],2,0));
+checks.push(await checkFile('LICENSE',fileNames,['license','license.md','copying','copying.md'],2,0));
+checks.push(await checkFile('SECURITY.md',fileNames,['security.md'],2,0));
+let ciScore=0,ciStatus='missing',ciDetail='No CI workflow files found.';
+if(hasDir('.github')){
+const ghContents=await githubGet('/repos/'+parsed.owner+'/'+parsed.repo+'/contents/.github');
+if(ghContents){
+const workflows=ghContents.find(d=>d.name.toLowerCase()==='workflows'&&d.type==='dir');
+if(workflows){
+const wfContents=await githubGet('/repos/'+parsed.owner+'/'+parsed.repo+'/contents/.github/workflows');
+if(wfContents&&wfContents.some(f=>f.name.endsWith('.yml')||f.name.endsWith('.yaml'))){ciScore=2;ciStatus='ok';ciDetail='GitHub Actions workflows detected.';}
+}
+}
+}
+if(ciScore===0&&(hasFile('.travis.yml')||hasDir('.circleci')||hasFile('jenkinsfile'))){ciScore=2;ciStatus='ok';ciDetail='External CI configuration detected.';}
+checks.push({name:'CI Workflows',score:ciScore,max_score:2,status:ciStatus,detail:ciDetail});
+let testScore=0,testStatus='missing',testDetail='No test directory or test files found.';
+const testDirs=['tests','test','spec','__tests__'];
+if(testDirs.some(d=>hasDir(d))){
+const testFiles=await githubGet('/repos/'+parsed.owner+'/'+parsed.repo+'/contents/'+testDirs.find(d=>hasDir(d)));
+if(testFiles&&testFiles.some(f=>f.name.match(/test_|_test\.|\.test\.|\.spec\./))){testScore=2;testStatus='ok';testDetail='Test directory and test files detected.';}
+else{testScore=1;testStatus='partial';testDetail='Test directory found but test files unclear.';}
+}
+checks.push({name:'Test Structure',score:testScore,max_score:2,status:testStatus,detail:testDetail});
+const depManifests=['package.json','requirements.txt','pyproject.toml','cargo.toml','go.mod','gemfile','composer.json'];
+const depLockfiles=['package-lock.json','pnpm-lock.yaml','yarn.lock','poetry.lock','cargo.lock','go.sum','gemfile.lock','composer.lock'];
+const foundManifests=depManifests.filter(f=>hasFile(f));
+const foundLockfiles=depLockfiles.filter(f=>hasFile(f));
+let depScore,depStatus,depDetail;
+if(foundManifests.length===0){depScore=1;depStatus='not_detected';depDetail='No common dependency manifest found.';}
+else if(foundLockfiles.length===0){depScore=1;depStatus='partial';depDetail='Manifest found but no lockfile detected.';}
+else{depScore=2;depStatus='ok';depDetail='Manifest and lockfile detected.';}
+checks.push({name:'Dependencies',score:depScore,max_score:2,status:depStatus,detail:depDetail});
+if(hasFile('.gitignore')){checks.push({name:'.gitignore',score:2,max_score:2,status:'ok',detail:'.gitignore file present.'});}
+else{checks.push({name:'.gitignore',score:0,max_score:2,status:'missing',detail:'No .gitignore file found.'});}
+let commScore=0,commFound=[];
+if(hasFile('contributing.md')||fileTree&&fileTree.some(f=>f.path&&f.path.toLowerCase().includes('contributing'))){commScore++;commFound.push('CONTRIBUTING');}
+if(hasFile('code_of_conduct.md')){commScore++;commFound.push('CODE_OF_CONDUCT');}
+if(hasFile('changelog.md')){commScore++;commFound.push('CHANGELOG');}
+if(hasDir('.github')){
+const ghC=await githubGet('/repos/'+parsed.owner+'/'+parsed.repo+'/contents/.github');
+if(ghC){
+if(ghC.some(f=>f.name.toLowerCase().includes('issue_template'))){commScore++;commFound.push('Issue Templates');}
+if(ghC.some(f=>f.name.toLowerCase().includes('pull_request_template'))){commScore++;commFound.push('PR Template');}
+}
+}
+commScore=Math.min(commScore,2);
+checks.push({name:'Community Files',score:commScore,max_score:2,status:commScore>=2?'ok':commScore>=1?'partial':'missing',detail:commFound.length?commFound.join(', '):'No community files found.'});
+const totalScore=checks.reduce((s,c)=>s+c.score,0);
+const maxScore=checks.reduce((s,c)=>s+c.max_score,0);
+const pct=Math.round(totalScore/maxScore*100);
+let band,bandClass;
+if(pct>=80){band='Good shape for a lightweight pass';bandClass='score-good';}
+else if(pct>=50){band='Usable with handoff friction';bandClass='score-ok';}
+else{band='Basic recovery pass needed';bandClass='score-bad';}
+let html='<div class="score-card">';
+html+='<h2>'+parsed.owner+'/'+parsed.repo+'</h2>';
+html+='<div class="score-number '+bandClass+'">'+totalScore+'/'+maxScore+' <span style="font-size:.5em">('+pct+'%)</span></div>';
+html+='<div class="score-band '+bandClass+'">'+band+'</div>';
+html+='<table class="checks-table"><tr><th>Check</th><th>Status</th><th>Score</th><th>Note</th></tr>';
+checks.forEach(c=>{
+const sc=c.status==='ok'?'check-status-ok':c.status==='partial'||c.status==='not_detected'?'check-status-partial':'check-status-missing';
+html+='<tr><td>'+c.name+'</td><td class="'+sc+'">'+c.status+'</td><td>'+c.score+'/'+c.max_score+'</td><td>'+c.detail+'</td></tr>';
+});
+html+='</table></div>';
+html+='<div class="upsell">';
+html+='<h3>Want help fixing these?</h3>';
+html+='<div class="upsell-product"><div class="upsell-product-info"><div class="upsell-product-name">Repo Health Snapshot Kit</div><div class="upsell-product-desc">Self-serve worksheet kit for setup friction, test/CI triage, and handoff-ready reporting.</div></div><div class="upsell-product-price">$29</div><a class="btn btn-tertiary" href="https://designsy1.gumroad.com/l/toksiz">Get Kit</a></div>';
+html+='<div class="upsell-product"><div class="upsell-product-info"><div class="upsell-product-name">Repo Handoff Readiness Snapshot</div><div class="upsell-product-desc">Done-for-you repo review with scorecard and prioritized next actions. 24h delivery.</div></div><div class="upsell-product-price">$79</div><a class="btn btn-primary" href="https://designsy1.gumroad.com/l/ftgbj">Get Service</a></div>';
+html+='<div class="upsell-product"><div class="upsell-product-info"><div class="upsell-product-name">Free Checklist</div><div class="upsell-product-desc">10-minute self-review checklist for repo handoff readiness.</div></div><div class="upsell-product-price">Free</div><a class="btn btn-secondary" href="https://github.com/xcapselx/repo-health-checks/blob/main/README_HEALTH_MINI_CHECKLIST.md">Get Checklist</a></div>';
+html+='</div>';
+results.innerHTML=html;
+results.style.display='block';
+status.className='success';
+status.textContent='Scan complete. Score: '+totalScore+'/'+maxScore+' ('+pct+'%)';
+btn.disabled=false;
+}catch(e){
+status.className='error';
+status.textContent='Error: '+e.message;
+btn.disabled=false;
+}
+}
+async function checkFile(label,fileNames,names,scoreOk,scoreMissing){
+const found=names.some(n=>fileNames.includes(n.toLowerCase()));
+return{name:label,score:found?scoreOk:scoreMissing,max_score:scoreOk,status:found?'ok':'missing',detail:found?'Found':'Missing: add '+names.join(' or ')};
+}
+</script>
 </body>
 </html>
