@@ -2,6 +2,20 @@
 
 Focused GitHub repository health checks, CI/test triage, and small automation fixes for builders who need to turn a messy, fast-built, or AI-built repo into a handoff-ready next-action list.
 
+## GitHub Action
+
+Use this repo as a GitHub Action in your CI to automatically check your repo health on every push and PR:
+
+```yaml
+- uses: xcapselx/repo-health-checks@main
+  with:
+    path: '.'
+    fail-on-low-score: 'false'
+    output-format: 'markdown'
+```
+
+The action runs a non-invasive scan (no network calls, no data uploads) and produces a handoff-readiness scorecard covering README, LICENSE, SECURITY.md, dependency lockfiles, and file tree hygiene. See the [example workflow](.github/workflows/repo-health-check.yml).
+
 ## Start Here
 
 Cloned this repo? In the first 30 seconds, open the free [README Health Mini Checklist](README_HEALTH_MINI_CHECKLIST.md), pick one repo, and score whether it is handoff-ready: easy to understand, run, test, and turn into a next-action list.
