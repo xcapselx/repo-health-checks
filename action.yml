@@ -37,21 +37,21 @@ runs:
                 content = f.read().strip()
             if content.startswith('{'):
                 data = json.loads(content)
-                print(data.get('score', 0))
+                print(data.get('score_percent', 0))
             else:
                 for line in content.split('\n'):
-                    if line.startswith('Score:'):
-                        parts = line.split(':')[1].strip().split('/')[0].strip()
-                        print(parts)
+                    if 'Score:' in line and '%' in line:
+                        pct = line.split('(')[1].split('%')[0].strip()
+                        print(pct)
                         break
                 else:
                     print(0)
         except Exception:
             print(0)
         ")
-        echo "Repo health score: $SCORE"
-        if [ "$SCORE" -lt 5 ]; then
-          echo "::warning::Repo health score is $SCORE/10. Consider improving README, LICENSE, SECURITY.md, dependency lockfiles, and file tree hygiene."
+        echo "Repo health score: $SCORE%"
+        if [ "$SCORE" -lt 50 ]; then
+          echo "::warning::Repo health score is $SCORE%. Consider improving README, LICENSE, SECURITY.md, CI workflows, tests, dependency lockfiles, and file tree hygiene."
           echo "Free checklist: https://github.com/xcapselx/repo-health-checks/blob/main/README_HEALTH_MINI_CHECKLIST.md"
           echo "Fuller self-serve kit ($29): https://designsy1.gumroad.com/l/toksiz"
           echo "Done-for-you service ($79): https://designsy1.gumroad.com/l/ftgbj"
